@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Болашақ мамандықтар мен жалақылар</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        .major-list {
+            margin: 20px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .major-item {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .major-item:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Сіздің болашақ мамандығыңыз бен жалақыңыз</h1>
+    <p>Өзіңізге ұнайтын мамандықты таңдаңыз:</p>
+    <div class="major-list" id="majorList"></div>
+    <div class="result" id="result"></div>
+
+    <script>
+        const data = {
+            "Ақпараттық технологиялар": [
+                { profession: "Бағдарламашы", salary: "500,000 ₸ - 1,200,000 ₸" },
+                { profession: "Жүйелік әкімші", salary: "400,000 ₸ - 900,000 ₸" },
+                { profession: "UI/UX дизайнер", salary: "450,000 ₸ - 1,000,000 ₸" }
+            ],
+            "Медицина": [
+                { profession: "Дәрігер", salary: "400,000 ₸ - 800,000 ₸" },
+                { profession: "Хирург", salary: "600,000 ₸ - 1,500,000 ₸" },
+                { profession: "Медбике", salary: "200,000 ₸ - 500,000 ₸" }
+            ],
+            "Құқықтану": [
+                { profession: "Заңгер", salary: "350,000 ₸ - 700,000 ₸" },
+                { profession: "Сот", salary: "700,000 ₸ - 1,200,000 ₸" },
+                { profession: "Прокурор", salary: "800,000 ₸ - 1,500,000 ₸" }
+            ],
+            "Экономика": [
+                { profession: "Қаржы сарапшысы", salary: "450,000 ₸ - 1,000,000 ₸" },
+                { profession: "Бухгалтер", salary: "300,000 ₸ - 700,000 ₸" },
+                { profession: "Маркетолог", salary: "400,000 ₸ - 900,000 ₸" }
+            ],
+            "Педагогика": [
+                { profession: "Мұғалім", salary: "250,000 ₸ - 500,000 ₸" },
+                { profession: "Университет оқытушысы", salary: "400,000 ₸ - 900,000 ₸" },
+                { profession: "Тәрбиеші", salary: "200,000 ₸ - 400,000 ₸" }
+            ],
+            "Инженерия": [
+                { profession: "Инженер", salary: "400,000 ₸ - 900,000 ₸" },
+                { profession: "Құрылыс инженері", salary: "500,000 ₸ - 1,200,000 ₸" },
+                { profession: "Электротехник", salary: "350,000 ₸ - 800,000 ₸" }
+            ]
+        };
+
+        const majorListDiv = document.getElementById("majorList");
+        const resultDiv = document.getElementById("result");
+
+        // Generate major buttons
+        Object.keys(data).forEach(major => {
+            const button = document.createElement("button");
+            button.textContent = major;
+            button.className = "major-item";
+            button.onclick = () => showProfessions(major);
+            majorListDiv.appendChild(button);
+        });
+
+        // Show professions and salaries for the selected major
+        function showProfessions(major) {
+            const professions = data[major];
+            resultDiv.innerHTML = <h2>${major}</h2>;
+            professions.forEach(item => {
+                resultDiv.innerHTML += `
+                    <p><strong>Мамандық:</strong> ${item.profession}</p>
+                    <p><strong>Мүмкін жалақы:</strong> ${item.salary}</p><hr>
+                `;
+            });
+        }
+    </script>
+</body>
+</html>
